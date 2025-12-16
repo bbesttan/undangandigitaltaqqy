@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Undangan Digital | Walimatul Khitan Taqqiy</title>
+  <!-- Google Fonts: Poppins & Playfair Display untuk nuansa elegan modern -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(180deg, #f8f9fa, #e9ecef);
+      color: #333;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+      background: #fff;
+      min-height: 100vh;
+      box-shadow: 0 0 40px rgba(0,0,0,0.15);
+      position: relative;
+    }
+    /* Cover Modern dengan animasi fade */
+    .cover {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(135deg, #1e3a4e, #a43931 70%);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      z-index: 10;
+      transition: opacity 1s ease;
+    }
+    .cover.fade-out { opacity: 0; pointer-events: none; }
+    .cover h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      font-weight: 700;
+      margin: 15px 0;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+    .cover p { font-size: 16px; margin: 10px 0; opacity: 0.9; }
+    .btn-open {
+      margin-top: 40px;
+      padding: 14px 40px;
+      border: none;
+      border-radius: 50px;
+      background: #fff;
+      color: #a43931;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+    }
+    .btn-open:hover { transform: scale(1.05); }
+
+    /* Content Sections */
+    section {
+      padding: 40px 20px;
+      text-align: center;
+    }
+    section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      margin-bottom: 15px;
+      color: #1e3a4e;
+    }
+    .name {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      font-weight: 700;
+      margin: 20px 0 10px;
+      color: #a43931;
+    }
+    .parents { font-style: italic; font-size: 15px; margin: 10px 0; color: #555; }
+
+    /* Foto anak di bawah judul Walimatul Khitan */
+    .child-photo {
+      width: 260px;
+      height: auto;
+      max-width: 90%;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      margin: 20px auto;
+      display: block;
+    }
+
+    /* Countdown Modern */
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 30px;
+    }
+    .countdown div {
+      background: linear-gradient(#fff, #f0f0f0);
+      padding: 15px;
+      border-radius: 15px;
+      min-width: 80px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      font-weight: 600;
+    }
+    .countdown span {
+      display: block;
+      font-size: 28px;
+      color: #a43931;
+    }
+    .countdown label { font-size: 13px; color: #666; }
+
+    /* Map */
+    iframe {
+      border-radius: 20px;
+      margin-top: 20px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      width: 100%;
+      height: 300px;
+    }
+
+    footer {
+      padding: 30px;
+      text-align: center;
+      font-size: 14px;
+      color: #777;
+      background: #f8f9fa;
+      line-height: 1.6;
+    }
+
+    /* Responsif penuh untuk mobile */
+    @media (max-width: 480px) {
+      .cover h1 { font-size: 32px; }
+      .name { font-size: 28px; }
+      .child-photo { width: 240px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- COVER -->
+    <div class="cover" id="cover">
+      <div>
+        <p>Undangan Walimatul Khitan</p>
+        <h1>Besttaqiy Ahmad Sucipto</h1>
+        <p>Ahad, 21 Desember 2025</p>
+        <button class="btn-open" onclick="openInvitation()">Buka Undangan</button>
+      </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div id="content" style="display:none;">
+      <section>
+        <h2>Walimatul Khitan</h2>
+        
+        <!-- Foto anak ditambahkan di sini: di bawah judul dan di atas nama -->
+        <img src="hero.png" 
+             alt="Besttaqiy Ahmad Sucipto" class="child-photo">
+
+        <div class="name">Besttaqiy Ahmad Sucipto</div>
+        <p class="parents">Putra Kedua<br>Bapak Bestto B.P & Ibu Parnita Sarmila</p>
+
+        <div class="countdown">
+          <div><span id="d">0</span><label>Hari</label></div>
+          <div><span id="h">0</span><label>Jam</label></div>
+          <div><span id="m">0</span><label>Menit</label></div>
+          <div><span id="s">0</span><label>Detik</label></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Waktu & Tempat</h2>
+        <p>Minggu, 21 Desember 2025<br>Pukul 14.00 WIB - Selesai</p>
+        <p>Jl. Ceplik No.87, Depok</p>
+        <iframe width="100%" height="300" loading="lazy"
+          src="https://maps.google.com/maps?q=-6.4274639,106.8129001&z=16&output=embed"></iframe>
+      </section>
+
+      <footer>
+        Merupakan kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu.<br><br>
+        Terima kasih atas doa & kehadirannya.
+      </footer>
+    </div>
+  </div>
+
+  <!-- Background Music -->
+  <audio id="bgm" loop preload="auto">
+    <source src="https://rr1---sn-jpug5-wvbl.googlevideo.com/videoplayback?expire=1765899148&ei=LCdBaYutItHEy_sPgcTS6Aw&ip=136.0.189.27&id=o-ABvfUrmuRz3EifVvlOzlBGn28ESywpRFA5RnjEPGdyCe&itag=140&source=youtube&requiressl=yes&xpc=EgVo2aDSNQ%3D%3D&rms=au%2Cau&bui=AYUSA3Donat1leyPimzNTzPIzqgCkVk9wqIoiZP9ac_aQ3nT-f0ERlJedaZD7EWFQ2YQpWC7t4yW8INo&spc=wH4Qq0V8SpRy&vprv=1&svpuc=1&mime=audio%2Fmp4&rqh=1&gir=yes&clen=1142135&dur=70.518&lmt=1749440615859486&keepalive=yes&fexp=51552689,51565115,51565681,51580968&c=ANDROID_VR&txp=5318224&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cxpc%2Cbui%2Cspc%2Cvprv%2Csvpuc%2Cmime%2Crqh%2Cgir%2Cclen%2Cdur%2Clmt&sig=AJfQdSswRgIhAI9_mmkkhYr97TqBlz6UO1dsN019wnwvzyAGWyrNI64lAiEApWD0v_TrZEVeACgiVTcctA39Hyuj6I4wwGT1MAxIBFI%3D&redirect_counter=1&rm=sn-ab5els7l&rrc=104&req_id=f506d3351adba3ee&cms_redirect=yes&cps=0&ipbypass=yes&met=1765877562,&mh=lX&mip=202.152.145.247&mm=31&mn=sn-jpug5-wvbl&ms=au&mt=1765877339&mv=m&mvi=1&pl=24&lsparams=cps,ipbypass,met,mh,mip,mm,mn,ms,mv,mvi,pl,rms&lsig=APaTxxMwRAIgSv6FNUWc6WN2x4NqBThMwsIcEF-s6Lc-zjcyl7DpVBYCIFoSvZ2g48csp3mubvLYqA-TWVslGHKwh1L3_SJ0yRNO" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    function openInvitation() {
+      document.getElementById('cover').classList.add('fade-out');
+      setTimeout(() => {
+        document.getElementById('cover').style.display = 'none';
+        document.getElementById('content').style.display = 'block';
+      }, 1000);
+
+      const bgm = document.getElementById('bgm');
+      bgm.volume = 0.4;
+      bgm.play().catch(() => {
+        console.log("Autoplay dicegah.");
+      });
+    }
+
+    // Countdown - karena hari ini 16 Desember 2025, acara tinggal 5 hari lagi
+    const target = new Date('2025-12-21T14:00:00').getTime();
+    const countdownInterval = setInterval(() => {
+      const now = new Date().getTime();
+      const diff = target - now;
+
+      if (diff <= 0) {
+        clearInterval(countdownInterval);
+        document.querySelector('.countdown').innerHTML = '<p style="font-size:18px;color:#a43931;">Acara telah dimulai.<br>Selamat datang!</p>';
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById('d').innerText = days;
+      document.getElementById('h').innerText = hours < 10 ? '0' + hours : hours;
+      document.getElementById('m').innerText = minutes < 10 ? '0' + minutes : minutes;
+      document.getElementById('s').innerText = seconds < 10 ? '0' + seconds : seconds;
+    }, 1000);
+  </script>
+</body>
+</html>
